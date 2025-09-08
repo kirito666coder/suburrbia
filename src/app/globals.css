@@ -100,3 +100,26 @@
     );
   }
 }
+
+
+@keyframes squiggle {
+  0% {
+    filter: url("#squiggle-0");
+  }
+  25% {
+    filter: url("#squiggle-1");
+  }
+  50% {
+    filter: url("#squiggle-2");
+  }
+  75% {
+    filter: url("#squiggle-3");
+  }
+  100% {
+    filter: url("#squiggle-4");
+  }
+}
+
+.animate-squiggle {
+  animation: squiggle 0.5s infinite;
+}
