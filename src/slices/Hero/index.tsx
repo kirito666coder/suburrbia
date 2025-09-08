@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
-import { PrismicNextLink } from "@prismicio/next";
 
 
 
@@ -25,7 +24,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className="bg-brand-pink relative h-dvh overflow-hidden text-zinc-800 bg-texture"
     >
-      <div className="grid absolute inset-0 mx-auto mt-24 max-w-6xl grid-rows-[1fr.auto] place-items-start px-6 ~py-10/16">
+      <div className="grid absolute inset-0 mx-auto mt-24 max-w-6xl grid-rows-[1fr_auto] place-items-start px-6 py-10 md:py-16">
       <Heading className="text-5xl font-extrabold relative  max-w-sm self-start">
      <PrismicText field={slice.primary.heading} />
       </Heading>
