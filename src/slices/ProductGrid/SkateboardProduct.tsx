@@ -5,6 +5,21 @@ import { Content, isFilled } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import clsx from 'clsx'
 import { FaStar } from 'react-icons/fa6'
+import { Scribble } from './Scribble'
+
+
+
+async function  GetDominantColor(url:string) {
+    const paletteURL = new URL(url)
+    paletteURL.searchParams.set('palette',"json")
+
+    const res = await fetch(paletteURL)
+    const json = await res.json()
+
+    return (json.dominant_colors.vibrant?.hex || json.dominant_colors.vibrant_light?.hex)
+}
+
+
 type Props = {
     id:string,
 }
@@ -22,6 +37,7 @@ const SkateboardProduct = async({id}: Props) => {
 
     const price = isFilled.number(product.data.price) ?`$${(product.data.price/100).toFixed(2)}`:"Price not Avallable"
     
+    const dominantColor = isFilled.image(product.data.image) ? await GetDominantColor(product.data.image.url) :undefined;
 
   return (
     <div className='group relative mx-auto w-full max-w-72 px-8 pt-4 '>
@@ -39,6 +55,7 @@ const SkateboardProduct = async({id}: Props) => {
             </span>
         </div>
         <div className='-mb-1 overflow-hidden py-4'>
+            <Scribble className='absolute inset-0 h-full w-full' color={`${dominantColor}`}/>
         <PrismicNextImage alt="" field={product.data.image} width={150} className='mx-auto w-[58%] origin-top transform-gpu transition-transform duration-500 ease-in-out group-hover:scale-150'/>
         </div>
         <HorizontalLine className={HORIZONTAL_LINK_CLASSES}/>
