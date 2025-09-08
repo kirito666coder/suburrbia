@@ -7,6 +7,7 @@ import { PrismicNextLink } from "@prismicio/next";
 
 import { Bounded } from "@/components/Bounded";
 import { Heading } from "@/components/Heading";
+import { ButtonLink } from "@/components/ButtonLink";
 
 
 /**
@@ -31,7 +32,9 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       <div className="flex justify-between gap-30">
      <PrismicRichText field={slice.primary.body} />
      <div className=" text-nowrap">
-     <PrismicNextLink field={slice.primary.button} />
+      <ButtonLink field={slice.primary.button} icon="skateboard" size="lg" className="z-20 mt-2 block py-1">
+        {slice.primary.button.text}
+      </ButtonLink>
      </div>
       </div>
       </div>
