@@ -32,13 +32,13 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </div>
 
       <div className="grid absolute inset-0 mx-auto mt-24 max-w-6xl grid-rows-[1fr_auto] place-items-start px-6 py-10 md:py-16">
-      <Heading className="text-5xl font-extrabold relative  max-w-sm self-start">
+      <Heading className=" relative  max-w-sm md:max-w-lg self-start">
      <PrismicText field={slice.primary.heading} />
       </Heading>
-      <div className="flex justify-between gap-30">
+      <div className="text-lg md:text-xl font-bold font-mono flex flex-col md:flex-row md:justify-between items-center  md:gap-30 ">
      <PrismicRichText field={slice.primary.body} />
      <div className=" text-nowrap">
-      <ButtonLink field={slice.primary.button} icon="skateboard" size="lg" className="z-20 mt-2 block py-1">
+      <ButtonLink field={slice.primary.button} icon="skateboard" size="lg" className=" z-20 mt-2 block py-1">
         {slice.primary.button.text}
       </ButtonLink>
      </div>
