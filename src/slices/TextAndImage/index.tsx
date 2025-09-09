@@ -28,6 +28,7 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
         theme === 'Orange' && "bg-texture bg-brand-orange text-white",
         theme === 'Navy' && "bg-texture bg-brand-navy text-white",
         theme === 'Lime' && "bg-texture bg-brand-lime text-white",
+        "p-8 mt-15 overflow-x-hidden overflow-y-visible"
       )}
     >
 
@@ -42,6 +43,7 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
       </div>
     <ButtonLink field={slice.primary.button}
     color={theme === 'Lime' ?'orange':'lime'}
+    className={'p-2'}
     >
       {slice.primary.button.text}
     </ButtonLink>
