@@ -69,7 +69,10 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomepageDocumentDataSlicesSlice = ProductGridSlice | HeroSlice;
+type HomepageDocumentDataSlicesSlice =
+  | TextAndImageSlice
+  | ProductGridSlice
+  | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -434,6 +437,181 @@ export type ProductGridSlice = prismic.SharedSlice<
   ProductGridSliceVariation
 >;
 
+/**
+ * Primary content in *TextAndImage → Default → Primary*
+ */
+export interface TextAndImageSliceDefaultPrimary {
+  /**
+   * Thema field in *TextAndImage → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.default.primary.thema
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  thema: prismic.SelectField<"Blue" | "Orange" | "Navy" | "Lime">;
+
+  /**
+   * Heading field in *TextAndImage → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *TextAndImage → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button field in *TextAndImage → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.default.primary.button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Backgroundimage field in *TextAndImage → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.default.primary.backgroundimage
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  backgroundimage: prismic.ImageField<never>;
+
+  /**
+   * Fourgroundimage field in *TextAndImage → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.default.primary.fourgroundimage
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  fourgroundimage: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for TextAndImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextAndImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TextAndImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *TextAndImage → Image on Left → Primary*
+ */
+export interface TextAndImageSliceImageOnLeftPrimary {
+  /**
+   * Thema field in *TextAndImage → Image on Left → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.thema
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  thema: prismic.SelectField<"Blue" | "Orange" | "Navy" | "Lime">;
+
+  /**
+   * Heading field in *TextAndImage → Image on Left → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *TextAndImage → Image on Left → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button field in *TextAndImage → Image on Left → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Backgroundimage field in *TextAndImage → Image on Left → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.backgroundimage
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  backgroundimage: prismic.ImageField<never>;
+
+  /**
+   * Fourgroundimage field in *TextAndImage → Image on Left → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.fourgroundimage
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  fourgroundimage: prismic.ImageField<never>;
+}
+
+/**
+ * Image on Left variation for TextAndImage Slice
+ *
+ * - **API ID**: `imageOnLeft`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextAndImageSliceImageOnLeft = prismic.SharedSliceVariation<
+  "imageOnLeft",
+  Simplify<TextAndImageSliceImageOnLeftPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TextAndImage*
+ */
+type TextAndImageSliceVariation =
+  | TextAndImageSliceDefault
+  | TextAndImageSliceImageOnLeft;
+
+/**
+ * TextAndImage Shared Slice
+ *
+ * - **API ID**: `text_and_image`
+ * - **Description**: TextAndImage
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextAndImageSlice = prismic.SharedSlice<
+  "text_and_image",
+  TextAndImageSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -473,6 +651,12 @@ declare module "@prismicio/client" {
       ProductGridSliceDefaultPrimary,
       ProductGridSliceVariation,
       ProductGridSliceDefault,
+      TextAndImageSlice,
+      TextAndImageSliceDefaultPrimary,
+      TextAndImageSliceImageOnLeftPrimary,
+      TextAndImageSliceVariation,
+      TextAndImageSliceDefault,
+      TextAndImageSliceImageOnLeft,
     };
   }
 }

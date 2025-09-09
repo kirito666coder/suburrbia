@@ -1,0 +1,185 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Belong"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Lorem Lorem esse tempor exercitation ad aliqua. Nisi pariatur voluptate sunt mollit nisi anim enim amet sint labore nisi aliqua incididunt incididunt ad."
+						}
+					}
+				]
+			},
+			"button": {
+				"key": "0e12c6d6-f74b-4bfe-9216-76e656e67f0e",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "hunter"
+				}
+			},
+			"backgroundimage": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
+					"width": 3168,
+					"height": 4752
+				},
+				"url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
+				"width": 3168,
+				"height": 4752,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "pay",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"fourgroundimage": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468",
+					"width": 4000,
+					"height": 6000
+				},
+				"url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468",
+				"width": 4000,
+				"height": 6000,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "mission",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"thema": {
+				"__TYPE__": "FieldContent",
+				"value": "Blue",
+				"type": "Select"
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "imageOnLeft",
+		"primary": {
+			"thema": {
+				"__TYPE__": "FieldContent",
+				"value": "Orange",
+				"type": "Select"
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Worried"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Elit pariatur adipisicing id irure Lorem nisi quis eu dolore labore. Quis velit cupidatat commodo aliqua esse minim occaecat tempor ipsum incididunt eiusmod commodo occaecat ullamco duis. Mollit exercitation ullamco et aliqua tempor."
+						}
+					}
+				]
+			},
+			"button": {
+				"key": "24bf6404-f1f3-482d-866b-ad530e82a43c",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "strip"
+				}
+			},
+			"backgroundimage": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
+					"width": 6597,
+					"height": 4398
+				},
+				"url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
+				"width": 6597,
+				"height": 4398,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "spread",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"fourgroundimage": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
+					"width": 3199,
+					"height": 3199
+				},
+				"url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
+				"width": 3199,
+				"height": 3199,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "battle",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]
