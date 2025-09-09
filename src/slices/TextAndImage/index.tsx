@@ -1,11 +1,17 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import clsx from "clsx";
 import { Heading } from "@/components/Heading";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Parallaximage } from "./Parallaximage";
+
+
+declare module 'react'{
+  interface CSSProperties{
+    '--index'?:number
+  }
+}
 
 /**
  * Props for `TextAndImage`.
@@ -16,7 +22,7 @@ export type TextAndImageProps = SliceComponentProps<Content.TextAndImageSlice>;
  * Component for "TextAndImage" Slices.
  */
 
-const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
+const TextAndImage: FC<TextAndImageProps> = ({ slice,index }) => {
 
   const theme =slice.primary.thema
   return (
@@ -28,8 +34,9 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
         theme === 'Orange' && "bg-texture bg-brand-orange text-white",
         theme === 'Navy' && "bg-texture bg-brand-navy text-white",
         theme === 'Lime' && "bg-texture bg-brand-lime text-white",
-        "p-8 overflow-hidden "
+        "p-8 overflow-hidden sticky top-[calc(var(--index)*2rem)]"
       )}
+      style={{"--index":index}}
     >
 
      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
