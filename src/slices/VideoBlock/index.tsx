@@ -50,7 +50,7 @@ const VideoBlock: FC<VideoBlockProps> = ({ slice }) => {
         </div>
         </div>
       </div>
-  
+      
     </Bounded>
   );
 };

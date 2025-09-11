@@ -4,6 +4,7 @@ import { PrismicText, SliceComponentProps } from "@prismicio/react";
 import { Heading } from "@/components/Heading";
 import { createClient } from "@/prismicio";
 import { Skater } from "./Skater";
+import { Bounded } from "@/components/Bounded";
 
 /**
  * Props for `TeamGrid`.
@@ -22,15 +23,15 @@ const TeamGrid: FC<TeamGridProps> =  async({ slice }) => {
 
 
   return (
-    <section
+    <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-texture bg-brand-blue"
+      className="bg-texture bg-brand-navy flex flex-col justify-between items-center"
     >
       <Heading as="h2" size='lg' className='mb-8 text-center text-white'>
      <PrismicText field={slice.primary.heading} />
       </Heading>
-      <div className="grid grid-cols-1 gap-8  md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-4 ">
         {
           skaters.map((skater,index)=>(
            <React.Fragment key={index}>
@@ -41,7 +42,7 @@ const TeamGrid: FC<TeamGridProps> =  async({ slice }) => {
           ))
         }
       </div>
-    </section>
+    </Bounded>
   );
 };
 
