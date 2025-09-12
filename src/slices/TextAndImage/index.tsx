@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { Heading } from "@/components/Heading";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Parallaximage } from "./Parallaximage";
+import { SlideIn } from "@/components/SlideIn";
 
 
 declare module 'react'{
@@ -42,18 +43,24 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice,index }) => {
      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
 
     <div className={clsx('flex flex-col items-center gap-8 text-center md:items-start md:text-left', slice.variation === 'imageOnLeft'&& 'md:order-2')}>
+      <SlideIn>
       <Heading as="h2"  className="text-5xl font-extrabold  m mb-6 md:mb-10 pt-10">
     <PrismicText field={slice.primary.heading} />
       </Heading>
+      </SlideIn>
+      <SlideIn>
       <div className="max-w-md text-lg leading-relaxed">
     <PrismicRichText field={slice.primary.body} />
       </div>
+      </SlideIn>
+      <SlideIn>
     <ButtonLink field={slice.primary.button}
     color={theme === 'Lime' ?'orange':'lime'}
     className={'p-2'}
     >
       {slice.primary.button.text}
     </ButtonLink>
+      </SlideIn>
       </div>
    
     <Parallaximage foregroundImage={slice.primary.fourgroundimage} backgroundImage={slice.primary.backgroundimage}/>

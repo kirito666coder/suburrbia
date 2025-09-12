@@ -73,7 +73,7 @@ export const Parallaximage = ({
     <PrismicNextImage field={backgroundImage} alt='' className='w-11/12 max-h-[550px]'/>
     </div>
     <div ref={foregroundRef} className='col-start-1 row-start-1 transition-transform h-full w-full place-items-center'>
-    <PrismicNextImage field={foregroundImage} alt='' imgixParams={{height:600}} className='h-full max-h-[500px] w-auto'/>
+    <PrismicNextImage field={foregroundImage} alt='' imgixParams={{height:800}} className='h-full max-h-[500px] w-auto'/>
     </div>
     </div>
   )
