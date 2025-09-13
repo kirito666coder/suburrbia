@@ -63,6 +63,31 @@ const boltColor = '#555555'
   }),[boltColor])
 
 
+const metalNormal = useTexture('/skateboard/metal-normal.avif') 
+
+metalNormal.wrapS =THREE.RepeatWrapping;
+metalNormal.wrapT =THREE.RepeatWrapping;
+metalNormal.anisotropy =8;
+metalNormal.repeat.set(8, 8)
+
+const truckColor = '#555555'
+
+  const truckMaterial = useMemo(()=> new THREE.MeshStandardMaterial({
+    color:truckColor,
+    normalScale: new THREE.Vector2(0.3,0.3),
+    metalness: 0.8,
+    roughness: 0.25,
+  }),[truckColor])
+
+
+  const deckTexture = useTexture('/skateboard/Deck.webp')
+
+  const deckkMaterial = useMemo(()=> new THREE.MeshStandardMaterial({
+    map:deckTexture,  
+    roughness: 0.1,
+  }),[deckTexture])
+
+
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
@@ -95,7 +120,7 @@ const boltColor = '#555555'
           castShadow
           receiveShadow
           geometry={nodes.Deck.geometry}
-          material={nodes.Deck.material}
+          material={deckkMaterial}
           position={[0, 0.271, -0.002]}
         />
         <mesh
@@ -130,7 +155,7 @@ const boltColor = '#555555'
           castShadow
           receiveShadow
           geometry={nodes.Baseplates.geometry}
-          material={nodes.Baseplates.material}
+          material={truckMaterial}
           position={[0, 0.211, 0]}
         />
         <mesh
@@ -138,7 +163,7 @@ const boltColor = '#555555'
           castShadow
           receiveShadow
           geometry={nodes.Truck1.geometry}
-          material={nodes.Truck1.material}
+          material={truckMaterial}
           position={[0, 0.101, -0.617]}
         />
         <mesh
@@ -146,7 +171,7 @@ const boltColor = '#555555'
           castShadow
           receiveShadow
           geometry={nodes.Truck2.geometry}
-          material={nodes.Truck2.material}
+          material={truckMaterial}
           position={[0, 0.101, 0.617]}
           rotation={[Math.PI, 0, Math.PI]}
         />
