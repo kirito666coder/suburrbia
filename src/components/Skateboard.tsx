@@ -4,6 +4,17 @@ import React, { useMemo, useRef } from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
+
+type SkateboardProps ={
+  wheelTextureUrls:string[],
+  wheelTextureUrl:string,
+  deckTextureUrl:string,
+  deckTextureUrls:string[],
+  truckColor:string,
+  boltColor:string,
+  constantWheelSpin?:boolean
+}
+
 type GLTFResult = GLTF & {
   nodes: {
     GripTape: THREE.Mesh
@@ -21,8 +32,20 @@ type GLTFResult = GLTF & {
 }
 
 
-export function Skateboard(props: JSX.IntrinsicElements['group']) {
+export function Skateboard({ wheelTextureUrls,
+  wheelTextureUrl,
+  deckTextureUrl,
+  deckTextureUrls,
+  truckColor,
+  boltColor,
+  constantWheelSpin}:SkateboardProps,props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/skateboard.gltf') as unknown as GLTFResult;
+
+  const wheelTextures = useTexture(wheelTextureUrls)
+  wheelTexture.forEach(texture => {
+    texture.flipY = false;
+    texture.colorSpace = THREE.SRGBColorSpace
+  });
 
   const GripTapeDiffuse = useTexture('/skateboard/griptape-diffuse.webp')
   const GripTapeRoughness = useTexture('/skateboard/griptape-roughness.webp')
@@ -55,7 +78,6 @@ export function Skateboard(props: JSX.IntrinsicElements['group']) {
     return material;
   },[GripTapeDiffuse,GripTapeRoughness])
 
-const boltColor = '#555555'
 
   const boltMaterial = useMemo(()=> new THREE.MeshStandardMaterial({
     color:boltColor,
@@ -71,7 +93,6 @@ metalNormal.wrapT =THREE.RepeatWrapping;
 metalNormal.anisotropy =8;
 metalNormal.repeat.set(8, 8)
 
-const truckColor = '#555555'
 
   const truckMaterial = useMemo(()=> new THREE.MeshStandardMaterial({
     color:truckColor,
