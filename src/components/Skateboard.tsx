@@ -1,8 +1,9 @@
 
 import * as THREE from 'three'
-import React, { useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useFrame } from '@react-three/fiber'
 
 
 type SkateboardProps ={
@@ -39,6 +40,10 @@ export function Skateboard({ wheelTextureUrls,
   truckColor,
   boltColor,
   constantWheelSpin}:SkateboardProps,props: JSX.IntrinsicElements['group']) {
+
+
+    const wheelRefs = useRef<THREE.Object3D[]>([])
+
   const { nodes, materials } = useGLTF('/skateboard.gltf') as unknown as GLTFResult;
 
 
@@ -143,6 +148,29 @@ metalNormal.repeat.set(8, 8)
 
 
 
+  // wheelRefs
+
+  const addToWheelRefs = (ref:THREE.Object3D |null) =>{
+    if(ref && !wheelRefs.current.includes(ref)){
+      wheelRefs.current.push(ref)
+    }
+  }
+
+  useFrame(()=>{
+    if(!wheelRefs.current || !constantWheelSpin) return;
+    for(const wheel of wheelRefs.current){
+      wheel.rotation.x +=.2
+    }
+  })
+
+  useEffect(()=>{
+    if(!wheelRefs.current || constantWheelSpin) return;
+    for(const wheel of wheelRefs.current){
+     // GSAP rotatioin
+
+    }
+  },[constantWheelSpin])
+
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
@@ -161,6 +189,7 @@ metalNormal.repeat.set(8, 8)
           geometry={nodes.Wheel1.geometry}
           material={ wheelMaterial}
           position={[0.238, 0.086, 0.635]}
+          ref={ addToWheelRefs}
         />
         <mesh
           name="Wheel2"
@@ -169,6 +198,7 @@ metalNormal.repeat.set(8, 8)
           geometry={nodes.Wheel2.geometry}
           material={ wheelMaterial}
           position={[-0.237, 0.086, 0.635]}
+          ref={ addToWheelRefs}
         />
         <mesh
           name="Deck"
@@ -186,6 +216,7 @@ metalNormal.repeat.set(8, 8)
           material={ wheelMaterial}
           position={[-0.238, 0.086, -0.635]}
           rotation={[Math.PI, 0, Math.PI]}
+          ref={ addToWheelRefs}
         />
         <mesh
           name="Bolts"
@@ -204,6 +235,7 @@ metalNormal.repeat.set(8, 8)
           material={ wheelMaterial}
           position={[0.237, 0.086, -0.635]}
           rotation={[Math.PI, 0, Math.PI]}
+          ref={ addToWheelRefs}
         />
         <mesh
           name="Baseplates"
