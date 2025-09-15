@@ -42,10 +42,16 @@ export function Skateboard({ wheelTextureUrls,
   const { nodes, materials } = useGLTF('/skateboard.gltf') as unknown as GLTFResult;
 
   const wheelTextures = useTexture(wheelTextureUrls)
-  wheelTexture.forEach(texture => {
+  wheelTextures.forEach((texture) => {
     texture.flipY = false;
-    texture.colorSpace = THREE.SRGBColorSpace
+    texture.colorSpace = THREE.SRGBColorSpace;
   });
+
+  const wheelTextureIndex = wheelTextureUrls.findIndex(
+    (url)=>url === wheelTextureUrl
+  )
+
+  const wheelTexture = wheelTextures[wheelTextureIndex]
 
   const GripTapeDiffuse = useTexture('/skateboard/griptape-diffuse.webp')
   const GripTapeRoughness = useTexture('/skateboard/griptape-roughness.webp')
@@ -110,7 +116,6 @@ metalNormal.repeat.set(8, 8)
     roughness: 0.1,
   }),[deckTexture])
 
-  const wheelTexture = useTexture('/skateboard/SkateWheel1.png')
 
   wheelTexture.flipY=false;
 
