@@ -30,7 +30,7 @@ type GLTFResult = GLTF & {
     Truck1: THREE.Mesh
     Truck2: THREE.Mesh
   }
-  materials: {}
+
 }
 
 
@@ -40,12 +40,12 @@ export function Skateboard({ wheelTextureUrls,
   deckTextureUrls,
   truckColor,
   boltColor,
-  constantWheelSpin}:SkateboardProps,props: JSX.IntrinsicElements['group']) {
+  constantWheelSpin}:SkateboardProps) {
 
 
     const wheelRefs = useRef<THREE.Object3D[]>([])
 
-  const { nodes, materials } = useGLTF('/skateboard.gltf') as unknown as GLTFResult;
+  const { nodes} = useGLTF('/skateboard.gltf') as unknown as GLTFResult;
 
 
   //wheelTexture
@@ -176,7 +176,7 @@ metalNormal.repeat.set(8, 8)
   },[constantWheelSpin,wheelTextureUrl])
 
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null}>
       <group name="Scene">
         <mesh
           name="GripTape"

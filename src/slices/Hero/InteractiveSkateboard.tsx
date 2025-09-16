@@ -5,6 +5,7 @@ import { Canvas, ThreeEvent } from '@react-three/fiber'
 import gsap from 'gsap'
 import { Suspense, useRef } from 'react'
 import * as THREE from 'three'
+import { Hotspot } from './Hotspot'
 
 type Props = {
   deckTextureUrl:string,
@@ -174,6 +175,12 @@ function Scene({
             truckColor={truckColor}
             boltColor={boltColor}
             constantWheelSpin
+            />
+
+            <Hotspot
+            isVisible={true}
+            position={[0,.38,1]}
+            color='#B8FC39'
             />
 
             <mesh position={[0,.27,0.9]} name='front' onClick={onClick}>
