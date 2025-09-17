@@ -3,7 +3,7 @@ import { Skateboard } from '@/components/Skateboard'
 import { ContactShadows, Environment, OrbitControls } from '@react-three/drei'
 import { Canvas, ThreeEvent } from '@react-three/fiber'
 import gsap from 'gsap'
-import { Suspense, useRef } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Hotspot } from './Hotspot'
 
@@ -47,6 +47,14 @@ function Scene({
   const containerRef = useRef<THREE.Group>(null)
   const originRef = useRef<THREE.Group>(null)
 
+  const [showHotspot, setshowHotspot] = useState({
+    front:true,
+    middle:true,
+    back:true,
+  })
+
+  const [Animating, setAnimating] = useState(false)
+
 
   function onClick(event:ThreeEvent<MouseEvent>){
     event.stopPropagation()
@@ -54,9 +62,11 @@ function Scene({
 
     const board = containerRef.current
     const origin = originRef.current
-    if(!board || !origin) return;
+    if(!board || !origin || Animating) return;
 
     const {name} = event.object;
+
+    setshowHotspot((current)=>({...current,[name]:false}))
 
     jumpBoard(board)
 
@@ -69,6 +79,24 @@ function Scene({
     }
 
   
+  }
+
+
+
+  function jumpBoard(board:THREE.Group){
+    setAnimating(true)
+    gsap.timeline({onComplete:()=>setAnimating(false)})
+    .to(board.position,{
+      y:.8,
+      duration: .51,
+      ease:'power2.out',
+      delay:.26
+    })
+    .to(board.position,{
+      y:0,
+      duration:.43,
+      ease:"power2.in"
+    })
   }
 
 
@@ -144,22 +172,6 @@ function Scene({
   }
   
 
-
-  function jumpBoard(board:THREE.Group){
-    gsap.timeline()
-    .to(board.position,{
-      y:.8,
-      duration: .51,
-      ease:'power2.out',
-      delay:.26
-    })
-    .to(board.position,{
-      y:0,
-      duration:.43,
-      ease:"power2.in"
-    })
-  }
-
     return(
         <group>
             <Environment files={"/hdr/warehouse-256.hdr"}/>
@@ -178,7 +190,7 @@ function Scene({
             />
 
             <Hotspot
-            isVisible={true}
+            isVisible={!Animating &&showHotspot.front}
             position={[0,.38,1]}
             color='#B8FC39'
             />
@@ -187,10 +199,24 @@ function Scene({
               <boxGeometry args={[.6,.2,.58]}/>
               <meshStandardMaterial visible={false}/>
             </mesh>
+
+            <Hotspot
+            isVisible={!Animating &&showHotspot.middle}
+            position={[0,.38,0]}
+            color='#FF7A51'
+            />
+
             <mesh position={[0,.27,0]} name='middle' onClick={onClick}>
               <boxGeometry args={[.6,.1,1.2]}/>
               <meshStandardMaterial visible={false}/>
             </mesh>
+
+            <Hotspot
+            isVisible={!Animating &&showHotspot.back}
+            position={[0,.38,-0.9]}
+            color='#46ACFA'
+            />
+
             <mesh position={[0,.27,-0.9]} name='back' onClick={onClick}>
               <boxGeometry args={[.6,.2,.58]}/>
               <meshStandardMaterial visible={false}/>
