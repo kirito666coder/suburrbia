@@ -69,6 +69,133 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
+/**
+ * Item in *Board Costomizer → Wheels*
+ */
+export interface BoardCostomizerDocumentDataWheelsItem {
+  /**
+   * Texture field in *Board Costomizer → Wheels*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.wheels[].texture
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  texture: prismic.ImageField<never>;
+
+  /**
+   * UID field in *Board Costomizer → Wheels*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.wheels[].uid
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  uid: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Board Costomizer → Decks*
+ */
+export interface BoardCostomizerDocumentDataDecksItem {
+  /**
+   * Texture field in *Board Costomizer → Decks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.decks[].texture
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  texture: prismic.ImageField<never>;
+
+  /**
+   * UID field in *Board Costomizer → Decks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.decks[].uid
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  uid: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Board Costomizer → Metals*
+ */
+export interface BoardCostomizerDocumentDataMetalsItem {
+  /**
+   * Color field in *Board Costomizer → Metals*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.metals[].color
+   * - **Documentation**: https://prismic.io/docs/fields/color
+   */
+  color: prismic.ColorField;
+
+  /**
+   * UID field in *Board Costomizer → Metals*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.metals[].uid
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  uid: prismic.KeyTextField;
+}
+
+/**
+ * Content for Board Costomizer documents
+ */
+interface BoardCostomizerDocumentData {
+  /**
+   * Wheels field in *Board Costomizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.wheels[]
+   * - **Tab**: wheels
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  wheels: prismic.GroupField<
+    Simplify<BoardCostomizerDocumentDataWheelsItem>
+  > /**
+   * Decks field in *Board Costomizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.decks[]
+   * - **Tab**: Decks
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */;
+  decks: prismic.GroupField<Simplify<BoardCostomizerDocumentDataDecksItem>> /**
+   * Metals field in *Board Costomizer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: board_costomizer.metals[]
+   * - **Tab**: Metals
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */;
+  metals: prismic.GroupField<Simplify<BoardCostomizerDocumentDataMetalsItem>>;
+}
+
+/**
+ * Board Costomizer document from Prismic
+ *
+ * - **API ID**: `board_costomizer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BoardCostomizerDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<BoardCostomizerDocumentData>,
+    "board_costomizer",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | TeamGridSlice
   | VideoBlockSlice
@@ -408,6 +535,7 @@ export type SkaterDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<SkaterDocumentData>, "skater", Lang>;
 
 export type AllDocumentTypes =
+  | BoardCostomizerDocument
   | HomepageDocument
   | SettingsDocument
   | SkateboardDocument
@@ -883,6 +1011,11 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      BoardCostomizerDocument,
+      BoardCostomizerDocumentData,
+      BoardCostomizerDocumentDataWheelsItem,
+      BoardCostomizerDocumentDataDecksItem,
+      BoardCostomizerDocumentDataMetalsItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
