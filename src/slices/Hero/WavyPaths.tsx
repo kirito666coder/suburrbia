@@ -38,6 +38,7 @@ export function WavyPaths() {
       height={308}
       className={clsx(
         "pointer-events-none text-zinc-600",
+        'animate-squiggle'
       )}
     >
       <path
