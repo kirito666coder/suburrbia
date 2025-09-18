@@ -79,7 +79,7 @@ function Scene({
       yoyo:true,
       ease:'sine.inOut'
     })
-  })
+  },[])
 
   useEffect(() => {
 
@@ -101,7 +101,7 @@ function Scene({
 
     return window.removeEventListener('resize', setZoom)
   
-  } )
+  },[camera] )
   
 
   function onClick(event:ThreeEvent<MouseEvent>){
@@ -223,7 +223,7 @@ function Scene({
     return(
         <group>
             <Environment files={"/hdr/warehouse-256.hdr"}/>
-            <OrbitControls/>
+            {/* <OrbitControls/> */}
             <group ref={originRef}>
             <group ref={containerRef} position={[-0.25,0,-0.635]}>
               <group position={[0,-0.086,.635]}>
