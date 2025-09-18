@@ -4,10 +4,14 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
+import { useIsSafari } from "@/lib/uselsSafari";
 
 gsap.registerPlugin(useGSAP);
 
 export function WavyPaths() {
+
+  const isSafari = useIsSafari(true)
+
   const root = useRef<SVGSVGElement>(null);
 
   useGSAP(() => {
@@ -38,7 +42,7 @@ export function WavyPaths() {
       height={308}
       className={clsx(
         "pointer-events-none text-zinc-600",
-        'animate-squiggle'
+        !isSafari &&'animate-squiggle'
       )}
     >
       <path
