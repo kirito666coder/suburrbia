@@ -1,6 +1,6 @@
 'use client'
 import { Skateboard } from '@/components/Skateboard'
-import { ContactShadows, Environment, Html, OrbitControls } from '@react-three/drei'
+import { ContactShadows, Environment, Html } from '@react-three/drei'
 import { Canvas, ThreeEvent, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { Suspense, useEffect, useRef, useState } from 'react'

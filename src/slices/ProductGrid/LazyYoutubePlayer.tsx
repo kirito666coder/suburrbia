@@ -1,7 +1,6 @@
 'use client'
 
 import { KeyTextField } from "@prismicio/client";
-import { join } from "path";
 import { useEffect, useRef, useState } from "react";
 
 type VideoProps = {
