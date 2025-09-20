@@ -46,7 +46,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </div>
 
       <div className="grid absolute inset-0 mx-auto mt-24 max-w-6xl grid-rows-[1fr_auto] place-items-start px-6 py-10 md:py-16">
-      <Heading className=" relative  max-w-sm md:max-w-lg self-start">
+      <Heading className=" relative font-extrabold text-[57px] md:text-[80px]  max-w-full md:max-w-lg self-start">
      <PrismicText field={slice.primary.heading} />
       </Heading>
       <div className="text-lg md:text-xl font-bold font-mono flex flex-col md:flex-row md:justify-between items-center  md:gap-30 ">
