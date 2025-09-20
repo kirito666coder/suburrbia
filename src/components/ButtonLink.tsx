@@ -30,7 +30,7 @@ export function ButtonLink({
         color === "lime" && "from-brand-lime to-brand-orange text-black",
         className,
       )}
-      {...props}
+      {...(props as React.ComponentProps<typeof PrismicNextLink>)}
     >
       {icon ? (
         <>
