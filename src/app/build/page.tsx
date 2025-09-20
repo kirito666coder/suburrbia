@@ -11,25 +11,34 @@ import Preview from './Preview'
 import { asImageSrc } from '@prismicio/client'
 import Controls from './Controls'
 
+type SearchParams = {
+  wheel?:string;
+  deck?:string;
+  truck?:string;
+  bolt?:string;
+}
 
-export default async function page () {
+
+export default async function page (props:{searchParams:SearchParams}) {
+
+  const searchParams = await props.searchParams;
 
     const client = createClient();
     const customizerSettings = await client.getSingle("board_costomizer")
     const {wheels,decks,metals} = customizerSettings.data;
 
 
-    const defaultWheel = wheels[0];
-    const defaultDeck = decks[0];
-    const defaultTruck = metals[0];
-    const defaultBolt = metals[0];
+    const defaultWheel = wheels.find((wheel) =>wheel.uid === searchParams.wheel) ?? wheels[0];
+    const defaultDeck = decks.find((deck) =>deck.uid === searchParams.deck) ??  decks[0];
+    const defaultTruck = metals.find((metal) =>metal.uid === searchParams.truck) ??  metals[0];
+    const defaultBolt = metals.find((metal) =>metal.uid === searchParams.bolt) ??  metals[0];
 
 
     const wheelTextureURLs = wheels.map((texutre) => asImageSrc(texutre.texture)).filter((url):url is string => Boolean(url));
     const deckTextureURLs = decks.map((texutre) => asImageSrc(texutre.texture)).filter((url):url is string => Boolean(url));
 
   return (
-    <div className='flex h-screen flex-col lg:flex-row'>
+    <div className='flex h-full flex-col lg:flex-row'>
         <CustomizerControlsProvider
         defaultWheel={defaultWheel}
         defaultDeck={defaultDeck}
@@ -43,8 +52,9 @@ export default async function page () {
        </div>
 
 
-       <Link href={'/'} className='absolute left-6 top-6' />
-       <Logo className='h-12 text-white'/>
+       <Link href={'/'} className='absolute left-6 top-6' >
+       <Logo className='h-12 text-white '/>
+       </Link>
         </div>
         <div className='grow bg-texture bg-zinc-900 text-white p-4 md:p-6 lg:shrink-0 lg:grow-0 lg:w-96'>
         <Heading size='sm' as='h1' className='mb-6 mt-0'>
